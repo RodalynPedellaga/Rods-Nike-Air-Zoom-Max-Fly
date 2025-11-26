@@ -3,7 +3,7 @@ import type { Product } from '../types'
 export const initialProducts: Product[] = [
   {
     id: 'maxfly-100',
-    image: 'https://cdn.pixabay.com/photo/2015/02/09/13/40/shoe-629643_640.jpg',
+    image: 'https://www.misterrunning.com/images/2022-media-6/nike-air-alphafly-next-flyknit-scarpe-running-donna-mint-foam-dv9425-300_A.jpg',
     name: 'Nike Air Zoom Maxfly 100',
     category: 'Sprint',
     description:
@@ -15,7 +15,7 @@ export const initialProducts: Product[] = [
   },
   {
     id: 'maxfly-200',
-    image: 'https://cdn.pixabay.com/photo/2014/06/18/18/41/running-shoe-371624_640.jpg',
+    image: 'https://i.ebayimg.com/images/g/9w4AAOSwb45mPSdm/s-l400.jpg',
     name: 'Nike Air Zoom Maxfly 200',
     category: 'Middle Distance',
     description:
@@ -36,5 +36,17 @@ export const initialProducts: Product[] = [
     rating: 4.7,
     price: 230,
     quantity: 2,
+  },
+  {
+    id: 'garmin-forerunner-970',
+    image: 'https://ph.garmin.com/m/ph/g/products/forerunner-745-black-cf-lg.jpg',
+    name: 'Garmin Forerunner 970',
+    category: 'Running Smartwatch',
+    description:
+      'Premium GPS running and triathlon smartwatch with an AMOLED display, built-in LED flashlight and enhanced navigation plus advanced training and recovery features.',
+    specs: 'AMOLED display, GPS, LED flashlight, advanced training metrics',
+    rating: 4.6,
+    price: 816.25,
+    quantity: 5,
   },
 ]
