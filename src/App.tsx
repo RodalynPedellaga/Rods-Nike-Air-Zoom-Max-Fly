@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import { useNotification } from './contexts/NotificationContext'
 import { Routes, Route, useParams, Link } from 'react-router-dom'
 import './App.css'
 import { initialProducts } from './data/products'
@@ -16,6 +17,7 @@ function App() {
   const [products, setProducts] = useState<Product[]>(initialProducts)
   const [filter, setFilter] = useState('All')
   const [search, setSearch] = useState('')
+  const { notify } = useNotification()
   // Product detail route is defined inside App so it can access products and handlers directly.
 
   const categories = useMemo(() => {
@@ -30,11 +32,11 @@ function App() {
   // Add to cart now increments quantity and marks item in cart.
   // This allows adding multiple times (unlimited) — quantity will increase on each add.
   const handleAddToCart = (id: string) => {
+    const prod = products.find((p) => p.id === id)
     setProducts((prev) =>
-      prev.map((p) =>
-        p.id === id ? { ...p, inCart: true, quantity: (p.quantity || 0) + 1 } : p,
-      ),
+      prev.map((p) => (p.id === id ? { ...p, inCart: true, quantity: (p.quantity || 0) + 1 } : p)),
     )
+    if (prod) notify(`Added "${prod.name}" to cart`, 'success')
   }
 
   const handleChangeQuantity = (id: string, delta: number) => {
@@ -49,7 +51,10 @@ function App() {
 
   // route-based detail view will be used instead of local selected state
 
-  const handleAddProduct = (product: Product) => setProducts((p) => [product, ...p])
+  const handleAddProduct = (product: Product) => {
+    setProducts((p) => [product, ...p])
+    notify(`Product "${product.name}" added`, 'success')
+  }
 
   const handleToggleFavorite = (id: string) => {
     setProducts((prev) => prev.map((p) => (p.id === id ? { ...p, favorite: !p.favorite } : p)))
